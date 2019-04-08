@@ -5,6 +5,7 @@ import os
 import random
 import re
 import sys
+from collections import Counter
 
 # Complete the checkMagazine function below.
 def checkMagazine(magazine, note):
@@ -21,6 +22,13 @@ def checkMagazine(magazine, note):
         if word not in mdict or ndict[word] > mdict[word]:
             same = "No"
     print same
+
+# Another way to solve this problem is to use Counter()
+def checkMagazine2(magazine, note):
+    # When an empty {} is returned, this means every word that appeared in note is present
+    # in magazine. Comparing both the word and the count of that word.
+    return ( Counter(note) - Counter(magazine) ) == {}
+
 
 if __name__ == '__main__':
     mn = raw_input().split()
