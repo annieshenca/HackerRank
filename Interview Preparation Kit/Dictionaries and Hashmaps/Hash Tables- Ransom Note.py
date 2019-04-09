@@ -8,7 +8,7 @@ import sys
 from collections import Counter
 
 # Complete the checkMagazine function below.
-def checkMagazine(magazine, note):
+def checkMagazine (magazine, note):
     # Create hash table for both magazines, then check if M has what N needs in terms
     # of both letters and letter counts.
     mdict = {}
@@ -24,11 +24,24 @@ def checkMagazine(magazine, note):
     print same
 
 # Another way to solve this problem is to use Counter()
-def checkMagazine2(magazine, note):
+def checkMagazine2 (magazine, note):
     # When an empty {} is returned, this means every word that appeared in note is present
     # in magazine. Comparing both the word and the count of that word.
-    return ( Counter(note) - Counter(magazine) ) == {}
+    if ( Counter(note) - Counter(magazine) ) == {}:
+        return "Yes"
+    else:
+        return "No"
 
+# Third option. Similar to the first.
+def checkMagazine3 (magazine, note):
+    dic = {}
+    for word in magazine:
+        dic[word] += 1
+    for word in note:
+        if dic[word] == 0:
+            return "No"
+        dic[word] -= 1
+    return "Yes"
 
 if __name__ == '__main__':
     mn = raw_input().split()
@@ -42,4 +55,4 @@ if __name__ == '__main__':
     note = raw_input().rstrip().split()
 
     checkMagazine(magazine, note)
-
+    checkMagazine3(magazine, note)
